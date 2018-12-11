@@ -65,7 +65,7 @@ const ChatIdController = require('./controllers/chatIdController')
   bot.onText(/\/ras (\d+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const resp = match[1];
-
+ChatIdController.get()
     bot.sendMessage(chatId, `Погоди, спрошу у сервера...\nКстати, твой ID чата: ${chatId}`)
 
     setTimeout(()=> {bot.sendMessage(chatId, `Пример расписания для ${resp} группы:

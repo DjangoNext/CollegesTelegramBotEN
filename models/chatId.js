@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const chatIdSchema = mongoose.Schema({
     status: Number,
-    chatId: Number,
+    chat_id: Number,
     create_date: {
         type: Date,
         default: Date.now
