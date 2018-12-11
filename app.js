@@ -67,7 +67,7 @@ const ChatIdController = require('./controllers/chatIdController')
 
     lastUserChatId = msg.chat.id
 
-    console.log(ChatIdController.get());
+    ChatIdController.get()
 
     bot.sendMessage(chatId, `Погоди, спрошу у сервера...\nКстати, твой ID чата: ${chatId}`)
 
