@@ -34,14 +34,14 @@ const bot = new TelegramBot(token, {polling: true});
   app.post(`/createorderphone`, upload.array(), (req, res) => {
     const { body } = req
     let str = ''
-    str += `Имя формы: ${body.formname}\n` || ''
-    str += `Телефон: ${body.phone}\n` || ''
-    str += `Сообщение: ${body.message}\n` || ''
-    str += `Язык: ${body.locale}\n` || ''
+    str += `*Имя формы*: ${body.formname}\n` || ''
+    str += `*Телефон*: ${body.phone}\n` || ''
+    str += `*Сообщение*: ${body.message}\n` || ''
+    str += `*Язык*: ${body.locale}\n` || ''
 
     ChatIdController.get(users => {
       users.forEach(user => {
-        bot.sendMessage(user.chat_id, str)
+        bot.sendMessage(user.chat_id, str, { parse_mode: "markdown" })
       })
     })
     res.send('OK')
@@ -64,9 +64,7 @@ const bot = new TelegramBot(token, {polling: true});
     //   message_id: msg.message_id
     // })
     
-    bot.sendMessage(chatId,
-      `[inline *mention* of a user](tg://user?id=123456789), ${chatId}`,
-      { parse_mode: "markdown" });
+    bot.sendMessage(chatId, `[inline *mention* of a user](tg://user?id=123456789), ${chatId}`, { parse_mode: "markdown" });
   });
 
   bot.onText(/\/new/, (msg, match) => {
