@@ -16,4 +16,8 @@ exports.get = function (chatId, status) {
         if (err) {  console.log('error', err); }
         console.log(chatIds);
     });
+    ChatId.deleteOne({ chatId: 200221422 }, function (err) {
+      if (err) return handleError(err);
+      // deleted at most one tank document
+    });
 };
