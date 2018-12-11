@@ -18,12 +18,12 @@ exports.new = function (chat_id, status) {
 
 };
 
-exports.get = function (callback || data => console.log(data)) {
+exports.get = function (callback) {
     ChatId.get(function (err, chatIds) {
         if (err) { return console.log('error', err); }
-        callback(chatIds);
+        callback ? callback(chatIds) : console.log(chatIds);
     });
-        ChatId.deleteOne({ chatId: 200221422 }, function (err) {
+    ChatId.deleteOne({ chatId: 200221422 }, function (err) {
       if (err) return handleError(err);
       // deleted at most one tank document
     });
