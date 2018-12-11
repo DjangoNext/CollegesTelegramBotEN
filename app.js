@@ -30,19 +30,17 @@ const ChatIdController = require('./controllers/chatIdController')
 
   app.post(`/createorderphone`, upload.array(), (req, res) => {
     const { body } = req
-    if (lastUserChatId) {
-      let str = ''
-      str += `Имя формы: ${body.formname}\n` || ''
-      str += `Телефон: ${body.phone}\n` || ''
-      str += `Сообщение: ${body.message}\n` || ''
-      str += `Язык: ${body.locale}\n` || ''
+    let str = ''
+    str += `Имя формы: ${body.formname}\n` || ''
+    str += `Телефон: ${body.phone}\n` || ''
+    str += `Сообщение: ${body.message}\n` || ''
+    str += `Язык: ${body.locale}\n` || ''
 
-      ChatIdController.get(users => {
-        for (user in users) {
-          bot.sendMessage(user.chatId, str)
-        }
-      })
-    }
+    ChatIdController.get(users => {
+      for (user in users) {
+        bot.sendMessage(user.chatId, str)
+      }
+    })
     res.send('OK')
   });
 
