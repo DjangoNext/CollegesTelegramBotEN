@@ -33,10 +33,10 @@ app.post(`/`, upload.array(), (req, res) => {
   const { body } = req
   if (lastUserChatId) {
     let str = ''
-    str += `${body.formname}\n` || ''
-    str += `${body.phone}\n` || ''
-    str += `${body.message}\n` || ''
-    str += `${body.locale}\n` || ''
+    str += `Имя формы: ${body.formname}\n` || ''
+    str += `Телефон: ${body.phone}\n` || ''
+    str += `Сообщение: ${body.message}\n` || ''
+    str += `Язык: ${body.locale}\n` || ''
     bot.sendMessage(lastUserChatId, str)
   }
   res.send('OK')
