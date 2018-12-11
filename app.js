@@ -32,12 +32,12 @@ const bot = new TelegramBot(token, {polling: true});
   app.use(bodyParser.urlencoded({ extended: true }));
 
   app.post(`/createorderphone`, upload.array(), (req, res) => {
-    const { body } = req
+    const { locale, phone, message } = req.body
     let str = 'Новая заявка на перезвон, данные:\n'
     // str += `*Имя формы*: ${body.formname}\n` || ''
-    str += `*Язык*:  ${body.locale}\n` || ''
-    str += `*Телефон*:  ${body.phone}\n` || ''
-    str += `*Сообщение*:  ${body.message}\n` || ''
+    str += locale  ? `*Язык*:  ${locale}\n` : ''
+    str += phone   ? `*Телефон*:  ${phone}\n` : ''
+    str += message ? `*Сообщение*:  ${message}\n` : ''
 
     ChatIdController.get(users => {
       users.forEach(user => {
