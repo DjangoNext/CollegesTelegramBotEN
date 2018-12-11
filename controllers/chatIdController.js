@@ -18,7 +18,7 @@ exports.new = function (chat_id, status) {
 
 };
 
-exports.get = function (callback) {
+exports.get = function (callback || data => console.log(data)) {
     ChatId.get(function (err, chatIds) {
         if (err) { return console.log('error', err); }
         callback(chatIds);
