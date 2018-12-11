@@ -75,8 +75,8 @@ client.connect(function(err) {
     const resp = match[1];
 
     lastUserChatId = msg.chat.id
+    console.log(db);
     const user = db.find({chatId: msg.chat.id})
-    console.log('user', user);
     if (!user) {
       db.insertOne({ chatId: msg.chat.id })
     }
