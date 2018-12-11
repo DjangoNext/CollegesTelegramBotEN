@@ -17,9 +17,13 @@ exports.new = function (chatId, status) {
     });
 };
 
-exports.get = function (chatId, status) {
+exports.get = function (chatId) {
     ChatId.get(function (err, chatIds) {
         if (err) { return console.log('error', err); }
         console.log(chatIds);
+    });
+    ChatId.findOne({ chatId: chatId }, function (err, adventure) {
+        if (err) { return console.log("err", err) }
+        console.log(adventure);
     });
 };
