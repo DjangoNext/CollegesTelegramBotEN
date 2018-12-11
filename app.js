@@ -21,6 +21,9 @@ mongoose.connect('mongodb://localhost:27017/chatIDs');
 var db = mongoose.connection;
 const ChatIdController = require('./controllers/chatIdController')
 
+const token = '723797921:AAHcpj_LBdmJv247T2FsnqrLIRl_tgOUB2w';
+const bot = new TelegramBot(token, {polling: true});
+
   // 
   // Server Api
   // 
@@ -38,7 +41,7 @@ const ChatIdController = require('./controllers/chatIdController')
 
     ChatIdController.get(users => {
       users.forEach(user => {
-        bot.sendMessage(user.chat_id, str)
+        bot.sendMessage(user.chat_id, user.chat_id)
       })
     })
     res.send('OK')
@@ -51,9 +54,6 @@ const ChatIdController = require('./controllers/chatIdController')
   // 
   // Bot
   // 
-
-  const token = '723797921:AAHcpj_LBdmJv247T2FsnqrLIRl_tgOUB2w';
-  const bot = new TelegramBot(token, {polling: true});
 
   bot.onText(/\/echo (.+)/, (msg, match) => {
     const chatId = msg.chat.id;
