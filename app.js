@@ -30,15 +30,13 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 });
 
 app.post(`/`, upload.array(), (req, res) => {
-  console.log('req:', req.body)
-  // console.log('res:', res.body)
+  const { body } = req
   if (lastUserChatId) {
     let str = ''
-    for (prop in req.body) {
-      if (req.body.hasOwnProperty(prop)) {
-        str += `${prop}: ${req.body[prop]}`
-      }
-    }
+    str += `${body.formname}\n` || ''
+    str += `${body.phone}\n` || ''
+    str += `${body.message}\n` || ''
+    str += `${body.locale}\n` || ''
     bot.sendMessage(lastUserChatId, str)
   }
   res.send('OK')
