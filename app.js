@@ -35,9 +35,9 @@ const bot = new TelegramBot(token, {polling: true});
     const { body } = req
     let str = 'Новая заявка на перезвон, данные:\n'
     // str += `*Имя формы*: ${body.formname}\n` || ''
-    str += `*Телефон*:   ${body.phone}\n` || ''
-    str += `*Язык*:      ${body.locale}\n` || ''
-    str += `*Сообщение*: ${body.message}\n` || ''
+    str += `*Язык*:  ${body.locale}\n` || ''
+    str += `*Телефон*:  ${body.phone}\n` || ''
+    str += `*Сообщение*:  ${body.message}\n` || ''
 
     ChatIdController.get(users => {
       users.forEach(user => {
