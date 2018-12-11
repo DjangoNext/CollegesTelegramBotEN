@@ -37,10 +37,9 @@ const ChatIdController = require('./controllers/chatIdController')
     str += `Язык: ${body.locale}\n` || ''
 
     ChatIdController.get(users => {
-      console.log(users);
-      for (user in users) {
-        bot.sendMessage(user.chatId, str)
-      }
+      users.forEach(user => {
+        bot.sendMessage(user.chat_id, str)
+      })
     })
     res.send('OK')
   });
@@ -61,7 +60,6 @@ const ChatIdController = require('./controllers/chatIdController')
     const resp = match[1];
 
     ChatIdController.get(users => {
-      console.log(users);
       users.forEach(user => {
         bot.sendMessage(user.chat_id, user.chat_id)
       })
