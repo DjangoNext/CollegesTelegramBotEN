@@ -59,6 +59,12 @@ const bot = new TelegramBot(token, {polling: true});
     const chatId = msg.chat.id;
     const resp = match[1];
     console.log(msg);
+    // bot.editMessageReplyMarkup({}, {
+    //   chat_id: msg.chat.id,
+    //   message_id: msg.message_id
+    // })
+    
+    bot.sendMessage(chatId, `tg://Ваш аккаунт создан, ${chatId}`);
   });
 
   bot.onText(/\/new/, (msg, match) => {
