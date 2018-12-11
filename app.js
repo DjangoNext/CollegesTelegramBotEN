@@ -65,7 +65,7 @@ const bot = new TelegramBot(token, {polling: true});
     // })
     
     bot.sendMessage(chatId,
-      `[inline mention of a user](tg://user?id=123456789), ${chatId}`,
+      `[inline *mention* of a user](tg://user?id=123456789), ${chatId}`,
       { parse_mode: "markdown" });
   });
 
