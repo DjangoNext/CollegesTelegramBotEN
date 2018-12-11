@@ -28,8 +28,6 @@ const ChatIdController = require('./controllers/chatIdController')
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
 
-  let lastUserChatId = ""
-
   app.post(`/createorderphone`, upload.array(), (req, res) => {
     const { body } = req
     if (lastUserChatId) {
@@ -102,8 +100,6 @@ const ChatIdController = require('./controllers/chatIdController')
   bot.onText(/\/commands/, (msg, match) => {
     const chatId = msg.chat.id;
     const resp = match[1];
-
-    lastUserChatId = msg.chat.id
 
     bot.sendMessage(chatId,
       `Список возможных команд:
