@@ -38,7 +38,12 @@ const ChatIdController = require('./controllers/chatIdController')
       str += `Телефон: ${body.phone}\n` || ''
       str += `Сообщение: ${body.message}\n` || ''
       str += `Язык: ${body.locale}\n` || ''
-      bot.sendMessage(lastUserChatId, str)
+
+      ChatIdController.get(users => {
+        for (user in users) {
+          bot.sendMessage(user.chatId, str)
+        }
+      })
     }
     res.send('OK')
   });
@@ -64,11 +69,6 @@ const ChatIdController = require('./controllers/chatIdController')
   bot.onText(/\/ras (\d+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const resp = match[1];
-
-    lastUserChatId = msg.chat.id
-
-    ChatIdController.get(lastUserChatId)
-    ChatIdController.new(msg.chat.id)
 
     bot.sendMessage(chatId, `Погоди, спрошу у сервера...\nКстати, твой ID чата: ${chatId}`)
 
