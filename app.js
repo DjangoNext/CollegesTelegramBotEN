@@ -75,7 +75,7 @@ client.connect(function(err) {
       db.collection('chatIds').insertOne({ chatId: msg.chat.id })
       console.log('nouser');
     }
-    console.log(db.collection('chatIds').find());
+    db.collection('chatIds').find({}).forEach(item=>console.log(item), error=>console.log(error));
 
     bot.sendMessage(chatId, 'Погоди, спрошу у сервера...')
 
