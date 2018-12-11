@@ -23,8 +23,4 @@ exports.get = function (callback) {
         if (err) { return console.log('error', err); }
         callback ? callback(chatIds) : console.log(chatIds);
     });
-    ChatId.deleteOne({ chatId: 200221422 }, function (err) {
-      if (err) return handleError(err);
-      // deleted at most one tank document
-    });
 };
