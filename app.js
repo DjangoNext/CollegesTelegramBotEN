@@ -25,8 +25,8 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 });
 
 app.post(`/`, (req, res) => {
-  console.log('req:', req)
-  console.log('res:', res)
+  console.log('req:', req.body)
+  // console.log('res:', res.body)
   if (lastUserChatId) {
     bot.sendMessage(chatId, `req:\n${req}\nres:\n${res}`)
   }
