@@ -10,24 +10,22 @@ const bodyParser = require('body-parser');
 const multer = require('multer'); // v1.0.5
 const upload = multer(); // for parsing multipart/form-data
 
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-const url = 'mongodb://localhost:27017';
-const dbName = 'chatIDs';
-const client = new MongoClient(url);
+// const MongoClient = require('mongodb').MongoClient;
+let mongoose = require('mongoose');
+// const assert = require('assert');
+// const url = 'mongodb://localhost:27017';
+// const client = new MongoClient(url);
 
 // Use connect method to connect to the Server
-client.connect(function(err) {
-  assert.equal(null, err);  
-  const db = client.db(dbName);
-
+mongoose.connect('mongodb://localhost:27017/chatIDs');
+var db = mongoose.connection;
 
   // 
   // Server Api
   // 
 
-  app.use(bodyParser.json()); // for parsing application/json
-  app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
 
   let lastUserChatId = ""
 
@@ -52,12 +50,9 @@ client.connect(function(err) {
   // Bot
   // 
 
-  // replace the value below with the Telegram token you receive from @BotFather
   const token = '723797921:AAHcpj_LBdmJv247T2FsnqrLIRl_tgOUB2w';
-  // Create a bot that uses 'polling' to fetch new updates
   const bot = new TelegramBot(token, {polling: true});
 
-  // Matches "/echo [whatever]"
   bot.onText(/\/echo (.+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const resp = match[1];
@@ -70,14 +65,9 @@ client.connect(function(err) {
     const resp = match[1];
 
     lastUserChatId = msg.chat.id
-    const user = db.collection('chatIds').find({chatId: msg.chat.id})
-    if (!user) {
-      db.collection('chatIds').insertOne({ chatId: msg.chat.id })
-      console.log('nouser');
-    }
-    console.log(db.collection('chatIds'));
 
-    bot.sendMessage(chatId, 'Погоди, спрошу у сервера...')
+
+    bot.sendMessage(chatId, `Погоди, спрошу у сервера...\nКстати, твой ID чата: ${chatId}`)
 
     setTimeout(()=> {bot.sendMessage(chatId, `Пример расписания для ${resp} группы:
     Понедельник:
@@ -126,6 +116,3 @@ client.connect(function(err) {
   //   // send a message to the chat acknowledging receipt of their message
   //   bot.sendMessage(chatId, "serfges");
   // });
-
-  client.close();
-});
