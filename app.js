@@ -33,7 +33,13 @@ app.post(`/`, upload.array(), (req, res) => {
   console.log('req:', req.body)
   // console.log('res:', res.body)
   if (lastUserChatId) {
-    bot.sendMessage(lastUserChatId, `${req.body}`)
+    let str = ''
+    for (prop in req.body) {
+      if (req.body.hasOwnProperty(prop)) {
+        str += `${prop}: ${req.body[prop]}`
+      }
+    }
+    bot.sendMessage(lastUserChatId, str)
   }
   res.send('OK')
 });
