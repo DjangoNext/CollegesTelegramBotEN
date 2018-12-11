@@ -33,6 +33,7 @@ const bot = new TelegramBot(token, {polling: true});
 
   app.post(`/createorderphone`, upload.array(), (req, res) => {
     const { locale, phone, message } = req.body
+    if (!locale && !phone && !message) { return }
     let str = 'Новая заявка на перезвон, данные:\n'
     // str += `*Имя формы*: ${body.formname}\n` || ''
     str += locale  ? `*Язык*:  ${locale}\n` : ''
