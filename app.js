@@ -3,6 +3,12 @@ const axios = require('axios');
 
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+const multer = require('multer'); // v1.0.5
+const upload = multer(); // for parsing multipart/form-data
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 const config = {
   port: 2020
@@ -12,7 +18,6 @@ let lastUserChatId = ""
 
 // replace the value below with the Telegram token you receive from @BotFather
 const token = '723797921:AAHcpj_LBdmJv247T2FsnqrLIRl_tgOUB2w';
-
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
 
@@ -24,7 +29,7 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
   bot.sendMessage(chatId, chatId);
 });
 
-app.post(`/`, (req, res) => {
+app.post(`/`, upload.array(), (req, res) => {
   console.log('req:', req.body)
   // console.log('res:', res.body)
   if (lastUserChatId) {
