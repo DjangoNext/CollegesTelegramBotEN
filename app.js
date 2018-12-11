@@ -19,6 +19,7 @@ let mongoose = require('mongoose');
 // Use connect method to connect to the Server
 mongoose.connect('mongodb://localhost:27017/chatIDs');
 var db = mongoose.connection;
+const ChatIdController = require('./controllers/chatIdController')
 
   // 
   // Server Api
@@ -66,6 +67,7 @@ var db = mongoose.connection;
 
     lastUserChatId = msg.chat.id
 
+    console.log(ChatIdController.get());
 
     bot.sendMessage(chatId, `Погоди, спрошу у сервера...\nКстати, твой ID чата: ${chatId}`)
 
