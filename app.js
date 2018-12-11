@@ -61,7 +61,14 @@ const bot = new TelegramBot(token, {polling: true});
 
     ChatIdController.get(users => {
       users.forEach(user => {
-        bot.sendMessage(user.chat_id, user.chat_id)
+        bot.sendMessage(user.chat_id, `
+          \`user.chat_id\`\n
+          \`\`putin\`\`\n
+          *efse*\n
+          **efsef**\n
+          _efsefse_\n
+          __efsfsef__\n
+        `)
       })
     })
   });
