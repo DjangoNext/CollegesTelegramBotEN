@@ -58,19 +58,6 @@ const bot = new TelegramBot(token, {polling: true});
   bot.onText(/\/echo (.+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const resp = match[1];
-
-    ChatIdController.get(users => {
-      users.forEach(user => {
-        bot.sendMessage(user.chat_id, `
-          \`user.chat_id\`\n
-          \`\`putin\`\`\n
-          *efse*\n
-          **efsef**\n
-          _efsefse_\n
-          __efsfsef__\n
-        `, { parse_mode: "markdown" })
-      })
-    })
   });
 
   bot.onText(/\/new/, (msg, match) => {
@@ -86,30 +73,30 @@ const bot = new TelegramBot(token, {polling: true});
     bot.sendMessage(chatId, `Погоди, спрошу у сервера...\nКстати, твой ID чата: ${chatId}`)
 
     setTimeout(()=> {bot.sendMessage(chatId, `Пример расписания для ${resp} группы:
-    Понедельник:
-      - Физ-ра
-      - Алгебра
-      - Химия
-      - Английский
-    Вторник:
-      - Казахский язык
-      - Русская литература
-      - Физика
-    Среда:
-      - 
-      - НВП
-      - История
-      - Казахская литература
-    Четверг:
-      - Обществознание
-      - Алгебра
-      - Физ-ра
-      - Русский язык
-    Пятница:
-      - Казахский язык
-      - Геометрия
-      - География
-      - Химия`)}, 1000)
+    *Понедельник*:
+      _Физ-ра_
+      _Алгебра_
+      _Химия_
+      _Английский_
+    *Вторник*:
+      _Казахский язык_
+      _Русская литература_
+      _Физика_
+    *Среда*:
+      __
+      _НВП_
+      _История_
+      _Казахская литература_
+    *Четверг*:
+      _Обществознание_
+      _Алгебра_
+      _Физ-ра_
+      _Русский язык_
+    *Пятница*:
+      _Казахский язык_
+      _Геометрия_
+      _География_
+      _Химия_`, { parse_mode: "markdown" })}, 1000)
   })
 
   bot.onText(/\/commands/, (msg, match) => {
