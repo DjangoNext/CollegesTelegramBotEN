@@ -29,7 +29,7 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
   bot.sendMessage(chatId, chatId);
 });
 
-app.post(`/`, upload.array(), (req, res) => {
+app.post(`/createorderphone`, upload.array(), (req, res) => {
   const { body } = req
   if (lastUserChatId) {
     let str = ''
