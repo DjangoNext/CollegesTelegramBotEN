@@ -33,7 +33,7 @@ app.post(`/`, upload.array(), (req, res) => {
   console.log('req:', req.body)
   // console.log('res:', res.body)
   if (lastUserChatId) {
-    bot.sendMessage(chatId, `${req.body}`)
+    bot.sendMessage(lastUserChatId, `${req.body}`)
   }
   res.send('OK')
 });
