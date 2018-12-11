@@ -18,9 +18,7 @@ const client = new MongoClient(url);
 
 // Use connect method to connect to the Server
 client.connect(function(err) {
-  assert.equal(null, err);
-  console.dir(client.db(dbName));
-  
+  assert.equal(null, err);  
   const db = client.db(dbName);
 
 
