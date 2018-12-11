@@ -58,6 +58,7 @@ const bot = new TelegramBot(token, {polling: true});
   bot.onText(/\/echo (.+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const resp = match[1];
+    console.log(msg);
   });
 
   bot.onText(/\/new/, (msg, match) => {
@@ -96,7 +97,7 @@ const bot = new TelegramBot(token, {polling: true});
       _Казахский язык_
       _Геометрия_
       _География_
-      _Химия_`, { parse_mode: "markdown" })}, 1000)
+      _Химия_`, { parse_mode: "markdown" })}, 500)
   })
 
   bot.onText(/\/commands/, (msg, match) => {
@@ -106,7 +107,7 @@ const bot = new TelegramBot(token, {polling: true});
     bot.sendMessage(chatId,
       `Список возможных команд:
     /start - Запускает бота
-    /raspisanie <номер_группы> - узнать расписание на неделю у вашей группы`);
+    /ras <номер_группы> - узнать расписание на неделю у вашей группы`);
   });
 
   // Listen for any kind of message. There are different kinds of
