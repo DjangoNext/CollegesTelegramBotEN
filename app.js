@@ -68,7 +68,7 @@ const bot = new TelegramBot(token, {polling: true});
           **efsef**\n
           _efsefse_\n
           __efsfsef__\n
-        `)
+        `, { parse_mode: "markdown" })
       })
     })
   });
