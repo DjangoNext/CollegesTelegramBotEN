@@ -63,7 +63,7 @@ const ChatIdController = require('./controllers/chatIdController')
     ChatIdController.get(users => {
       console.log(users);
       users.forEach(user => {
-        bot.sendMessage(user.chatId, str)
+        bot.sendMessage(user.chat_id, user.chat_id)
       })
     })
   });
