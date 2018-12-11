@@ -30,6 +30,7 @@ app.post(`/`, (req, res) => {
   if (lastUserChatId) {
     bot.sendMessage(chatId, `req:\n${req}\nres:\n${res}`)
   }
+  res.send('OK')
 });
 
 app.listen(config.port, function () {
