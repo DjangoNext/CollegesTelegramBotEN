@@ -22,8 +22,4 @@ exports.get = function (chatId) {
         if (err) { return console.log('error', err); }
         console.log(chatIds);
     });
-    ChatId.findOne({ chatId: chatId }, function (err, adventure) {
-        if (err) { return console.log("err", err) }
-        console.log(adventure);
-    });
 };
