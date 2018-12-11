@@ -63,7 +63,7 @@ const bot = new TelegramBot(token, {polling: true});
     //   chat_id: msg.chat.id,
     //   message_id: msg.message_id
     // })
-    let str = `[inline *mention* of a user](tg://user?id=123456789), ${chatId}`
+    let str = `[inline *mention* of a user](tg://user?id=123456789), _${chatId}_`
     bot.sendMessage(chatId, str, { parse_mode: "markdown" })
   });
 
