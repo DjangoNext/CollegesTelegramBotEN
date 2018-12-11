@@ -62,10 +62,16 @@ const ChatIdController = require('./controllers/chatIdController')
     bot.sendMessage(chatId, chatId);
   });
 
+  bot.onText(/\/new/, (msg, match) => {
+    const chatId = msg.chat.id;
+    ChatIdController.new(chatId)
+    bot.sendMessage(chatId, `Ваш аккаунт создан, ${chatId}`);
+  })
+
   bot.onText(/\/ras (\d+)/, (msg, match) => {
     const chatId = msg.chat.id;
     const resp = match[1];
-ChatIdController.get()
+
     bot.sendMessage(chatId, `Погоди, спрошу у сервера...\nКстати, твой ID чата: ${chatId}`)
 
     setTimeout(()=> {bot.sendMessage(chatId, `Пример расписания для ${resp} группы:
